@@ -1,0 +1,17 @@
+no_username: 
+  email: 'no_username@bar.com'
+
+no_email:
+  username: 'no_email'
+
+no_password:
+  username: 'no_password'
+  email: 'no_password@bar.com'
+
+bad_email:
+  username: 'bad_email'
+  email: 'no_at'
+
+bad_password:
+  username: 'bad_password'
+  email: 'bad_password@bar.com'
