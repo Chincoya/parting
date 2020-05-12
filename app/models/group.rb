@@ -6,14 +6,15 @@ class Group < ApplicationRecord
   has_one_attached :icon
   has_many :tasks
 
-  protected 
+  #protected 
 
   def icon_url
     return icon if icon.attached?
 
-    'assets/images/default-group-icon.png'
+    'default-group-icon.png'
   end
 
+  protected
   def accept_icon
     return unless icon.attached?
 
