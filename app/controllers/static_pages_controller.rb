@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
   end
 
   def landing
+    redirect_to tasks_path if current_user
   end
 
   def about
