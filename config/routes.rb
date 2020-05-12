@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :tasks, except: [:update]
+  resources :tasks, except: %i[show edit update destroy]
+  resources :groups, except: %i[update destroy]
   get '/about', to: 'static_pages#about'
   get '/home', to: 'static_pages#home'
 
