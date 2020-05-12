@@ -5,9 +5,12 @@ class Task < ApplicationRecord
   validates_associated :author
 
   belongs_to :author, class_name: 'User'
-  private
+
+  protected
+
   def valid_time
     return !amount.nil? &&
-            amount > 0  &&
+            amount > 0
   end
+
 end

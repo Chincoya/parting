@@ -1,3 +1,6 @@
 <li class="items-entry">
-<%= itemizables[:name] %>
+  <%= itemizables[:name] %>
+  <%= itemizables[:hours] if itemizables[:hours] %>
+  <%= itemizables[:minutes] if itemizables[:minutes] %>
+  <%= itemizables[:creation_date] %>
 </li>

@@ -2,16 +2,20 @@ no_username:
   email: 'no_username@bar.com'
 
 no_email:
-  username: 'no_email'
+  name: 'no_email'
 
 no_password:
-  username: 'no_password'
+  name: 'no_password'
   email: 'no_password@bar.com'
 
 bad_email:
-  username: 'bad_email'
+  name: 'bad_email'
   email: 'no_at'
 
 bad_password:
-  username: 'bad_password'
+  name: 'bad_password'
   email: 'bad_password@bar.com'
+
+valid:
+  name: 'Valid User'
+  email: foo@bar.com

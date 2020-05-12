@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   def index
     @tasks = Task.where('author_id = ?', current_user.id).map do |task|
-      { name: task[:name], hours: task[:amount]/60, minutes: task[:amount]%60 }
+      { name: task[:name], hours: task[:amount]/60, minutes: task[:amount]%60,
+        creation_date: task[:created_at] }
     end
   end
 
@@ -11,9 +12,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    new_params = process_params(task_params)
-    p new_params 
-    if current_user.tasks.create(new_params)
+    
+    if current_user.tasks.create(process_params(task_params)).valid?
       flash[:sucess] = 'Task created'
       redirect_to tasks_path
     else
