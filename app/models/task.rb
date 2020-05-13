@@ -7,6 +7,9 @@ class Task < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :group, optional: true
 
+  scope :external, -> { where(group_id: nil) }
+  scope :internal, -> { where.not(group_id: nil) }
+
   def icon_url
     return group.icon_url if !group.nil?
     

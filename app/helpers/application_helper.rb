@@ -5,8 +5,4 @@ module ApplicationHelper
     'Parting'
     
   end
-
-  def itemizable_helper(itemizable)
-    tags = ''
-  end
 end

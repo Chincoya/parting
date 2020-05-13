@@ -12,7 +12,9 @@
   <body>
     <%= render 'shared/notices' %>
     <%= render  'shared/menu' %>
-    <%= yield %>
+    <main class="main" id="main">
+      <%= yield %>
+    </main>
     <%= javascript_pack_tag 'global' %>
   </body>
 </html>

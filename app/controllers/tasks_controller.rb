@@ -1,13 +1,17 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   def index
-    @tasks = Task.where('author_id = ?', current_user.id).map do |task|
-      { name: task[:name], hours: task[:amount]/60, minutes: task[:amount]%60,
-        creation_date: task[:created_at] }
+    @cached_icons = {}
+    if params[:internal].present?
+      @tasks = Task.internal.where('author_id = ?', current_user.id)
+    else
+      @tasks = Task.external.where('author_id = ?', current_user.id)
     end
   end
 
   def new
+    @groups = Group.all.map { |group| group.name }.unshift('None')
+    
     @task = Task.new
   end
 
@@ -28,12 +32,21 @@ class TasksController < ApplicationController
 
   protected
 
+  def param_present?
+    unless params[:group].present?
+      redirect_to new_task_path
+    end
+  end
+
   def task_params
-    params.require(:task).permit(:name, :hours, :minutes)
+    params.require(:task).permit(:name, :hours, :minutes, :group)
   end
 
   def process_params(params)
-    return {name: params[:name],
-            amount: ((params[:hours].to_i * 60) + params[:minutes].to_i) }
+    return { name: params[:name].strip,
+            amount: ((params[:hours].to_i * 60) + params[:minutes].to_i),
+            group_id: params[:group].present? && params[:group] != 'None' ?
+                      Group.find_by(name: params[:group]).id : 
+                      nil }
   end
 end

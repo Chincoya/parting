@@ -1,6 +1,20 @@
-<div class="flash-container" id="flash-container">
-  <div class="flash notice" id="flash-notice"><%= notice %></div>
-  <div class="flash alert" id="flash-alert"><%= alert %></div>
-  <div class="flash sucess" id="flash-sucess"><%= flash[:sucess] %></div>
-  <div class="flash error" id="flash-error"><%= flash[:error] %></div>
-</div>
+<% if notice %>
+  <div class="flash-container flash-success" id="flash-notice">
+    <div><%= notice %></div>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="flash-container flash-error" id="flash-alert">
+    <div><%= alert %></div>
+  </div>
+<% end %>
+<% if  flash[:success] %>
+  <div class="flash-container flash-success" id="flash-sucess">
+    <div><%= flash[:sucess] %></div>
+  </div>
+<% end %>
+<% if  flash[:error]%>
+  <div class="flash-container flash-error" id="flash-error">
+    <div><%= flash[:error] %></div>
+  </div>
+<% end %>

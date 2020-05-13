@@ -1,2 +1,6 @@
-<%= image_tag  @group.icon_url %>
-<%= @group.name %>
+<% provide(title: @group.name) %>
+
+<%= @group.name%>
+<%= render  'shared/dashboard', locals: {itemizable: @group.tasks } %>
+
+<%= link_to  'Add task', new_task_path %>

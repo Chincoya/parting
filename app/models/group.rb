@@ -1,12 +1,10 @@
 class Group < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, format: { without: /\ANone\Z/ }
   validate :accept_icon
 
   belongs_to :user
   has_one_attached :icon
   has_many :tasks
-
-  #protected 
 
   def icon_url
     return icon if icon.attached?

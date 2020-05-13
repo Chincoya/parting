@@ -19,3 +19,8 @@ bad_password:
 valid:
   name: 'Valid User'
   email: foo@bar.com
+
+valid_for_group_test:
+  id: 1
+  name: 'Valid for Test Group'
+  email: 'valid@example.com'

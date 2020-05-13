@@ -29,18 +29,16 @@ RSpec.describe TasksController, type: :controller do
       expect(response).to have_http_status(:redirect)
     end
 
-    it 'gets to index of tasks if authenticated' do
+    it 'gets to new task form if authenticated' do
       sign_in users(:valid)
       get :new
       expect(response).to have_http_status(:success)
     end
 
-    it 'renders the index template' do
+    it 'renders the new template' do
       sign_in users(:valid)
       get :new
-      before = Task.all.length
       expect(response).to render_template('new')
-      expect(before).to be_eql(Task.all.length)
     end
 
   end
@@ -57,7 +55,7 @@ RSpec.describe TasksController, type: :controller do
       post :create, params: { task: {
             name: 'foo', hours: -1, minutes: -1 }
         }
-      expect(response).to render_template('new')
+      expect(response).to redirect_to('/tasks/new')
     end
 
     it 'renders index after saving valid task' do
