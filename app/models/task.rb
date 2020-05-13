@@ -7,6 +7,12 @@ class Task < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :group, optional: true
 
+  def icon_url
+    return group.icon_url if !group.nil?
+    
+    'default-group-icon.png'
+  end
+
   protected
 
   def valid_time

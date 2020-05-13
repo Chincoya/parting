@@ -17,8 +17,8 @@ class TasksController < ApplicationController
       flash[:sucess] = 'Task created'
       redirect_to tasks_path
     else
-      flash[:error] = 'Error creating task'
-      render 'new'
+      flash[:error] = 'Error creting task'
+      redirect_to new_task_path
     end
   end
 

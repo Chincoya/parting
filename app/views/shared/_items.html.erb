@@ -1,6 +1,5 @@
 <li class="items-entry">
-  <!--<% if itemizables.icon.attac%>
-  <% end%>-->
+  <%= image_tag  itemizables.icon_url, class: 'group-avatar' %>
   <%= itemizables[:name] %>
   <%= itemizables[:hours] if itemizables[:hours] %>
   <%= itemizables[:minutes] if itemizables[:minutes] %>

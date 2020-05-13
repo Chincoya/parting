@@ -1,11 +1,13 @@
 <%= form_tag '/tasks' do |f| %>
   <%= label_tag 'task[name]', 'Task:' %>
-  <%= text_field_tag 'task[name]', 'Your task' %><br/>
+  <%= text_field_tag 'task[name]', nil, placeholder: 'Your task' %><br/>
   <div class="task-time-container">
-    <%= number_field_tag 'task[hours]', in: 0.0..24.0, step: 1.0 %>
+    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0 %>
     <%= label_tag 'task[hours]', "HH / " %>
-    <%= number_field_tag 'task[minutes]', in: 0.0..55.0, step: 5.0 %>
+    <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0 %>
     <%= label_tag 'task[minutes]', "MM  " %>
   </div>
   <%= submit_tag 'Add Task' %>
 <% end %>
+<%= javascript_pack_tag 'landing' %>
+<%= javascript_pack_tag 'form_watcher' %>
