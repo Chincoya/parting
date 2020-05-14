@@ -1,6 +1,5 @@
-<% provide(title: @group.name) %>
-
-<%= @group.name%>
+<% provide(:title, @group.name) %>
+<% content_for :action_button do %>
+  <%= link_to 'Back', :back , class: 'action-button', id: 'action-button' %>
+<% end %>
 <%= render  'shared/dashboard', locals: {itemizable: @group.tasks } %>
-
-<%= link_to  'Add task', new_task_path %>

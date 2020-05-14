@@ -6,7 +6,7 @@ RSpec.describe 'static_pages/landing.html.erb', type: :view do
   context 'First opening of page' do
     it 'displays Login link' do
       render
-      expect(rendered).to match(/Log In/)
+      expect(rendered).to match(/Log In/i)
     end
 
     it 'displays correct Javascript pack tag' do

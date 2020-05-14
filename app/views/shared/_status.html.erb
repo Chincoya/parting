@@ -6,6 +6,6 @@
       <div class="menu-bar3" id="menu-bar3"></div>
     </a>
     <h2 class="status"><%= title_helper( yield :title ) %></h2>
-    <a class="search-link">Lens</a>
+    <%= action_button_helper( yield :action_button )%>
   </div>
 <% end %>

@@ -2,8 +2,8 @@
 <div class='menu-container'>
   <nav class="menu-popable" id="menu-poppable" >
     <%= image_tag  current_user.icon_url, class: 'user-avatar' %>
+    <div class="menu-item"><%= current_user.name %></div>
     <ul class="menu-list">
-      <li class="menu-item"><%= current_user.name %></li>
       <li class="menu-item"><%= link_to  'My tasks', tasks_path(internal: true) %></li>
       <li class="menu-item"><%= link_to  'My external tasks', tasks_path %></li>
       <li class="menu-item"><%= link_to  'Groups', groups_path %></li>

@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def create
     if current_user.tasks.create(process_params(task_params)).valid?
       flash[:sucess] = 'Task created'
-      redirect_to tasks_path
+      redirect_to tasks_path(internal: true)
     else
       flash[:error] = 'Error creting task'
       redirect_to new_task_path

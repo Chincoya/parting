@@ -6,6 +6,7 @@ $text-color-bolder : #434b54;
 $text-color-bold: #555E67;
 $text-color-normal: #878A8F;
 $text-color-light: #989DA3;
+$text-color-lighter: #D7D5D5;
 $menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 12.5%, rgb(41, 116, 173) 25%, rgb(23, 64, 110) 75%, rgb(18, 51, 92) 100%);
 $status-gradient: linear-gradient(0deg, rgba(49,134,198,0.9) 0%, rgba(29,54,93,0.4) 100%);;
 $main-box-shadow: -2px 2px 5px 0px rgba(26,26,26,1);
@@ -89,12 +90,24 @@ a {
 .status-bar {
   padding: 4%;
   background-image: $status-gradient;
+  align-items: center;
+  background-color: $main-color;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 950;
   .status {
     font-family: 'Montserrat-Light';
     color: white;
     font-size: 18px;
   }
-  a {
+  .menu-popper {
+    position: relative;
+    width: 20%;
+    z-index: 1000;
     color: white;
     display: block;
     .menu-bar1, .menu-bar2, .menu-bar3 {
@@ -115,6 +128,20 @@ a {
   }
 }
 
+.action-button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  font-family: 'Montserrat-Light';
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+}
+
 .form-error {
   -webkit-box-shadow: 0px 0px 3px 3px rgba(194,84,84,1);
   -moz-box-shadow: 0px 0px 3px 3px rgba(194,84,84,1);
@@ -125,18 +152,6 @@ a {
   border-radius: 50%;
   height: auto;
   width: 50px;
-}
-
-.status-bar {
-  align-items: center;
-  background-color: $main-color;
-  display: flex;
-  height: 10%;
-  justify-content: space-between;
-  position: relative;
-  top: 0;
-  width: 100%;
-  z-index: 950;
 }
 
 .group-avatar {
@@ -156,18 +171,16 @@ a {
   z-index: 900;
 }
 
-.menu-popper {
-  position: relative;
-  z-index: 1000;
-}
-
 .menu-list {
   display: flex;
   flex-direction: column;
+  list-style: none;
 }
 
 .menu-item {
-  color: $text-color-light;
+  color: $text-color-lighter;
+  font-family: 'Montserrat-light';
+  font-weight: bold;
   a {
     color: inherit;
   }
@@ -211,6 +224,9 @@ a {
   flex-direction: column;
   height: 100%;
   justify-content: start;
+  list-style: none;
+  overflow-y: scroll;
+  padding-bottom: 110px;
 }
 
 .items-entry {
@@ -219,8 +235,7 @@ a {
   display: flex;
   justify-content: space-between;
   font-family: 'Montserrat-Light';
-  height: 15%;
-  list-style: none;
+  height: 100px;
   margin: 10px 2.5%;
   padding: 8px;
   width: 95%;
