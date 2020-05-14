@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <div class="status-bar">
+    <a class="menu-popper" id="menu-popper" >
+      <div class="menu-bar1" id="menu-bar1"></div>
+      <div class="menu-bar2"></div>
+      <div class="menu-bar3" id="menu-bar3"></div>
+    </a>
+    <h2 class="status"><%= title_helper( yield :title ) %></h2>
+    <a class="search-link">Lens</a>
+  </div>
+<% end %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Task < ApplicationRecord
   validates :name, presence: true, length: { minimum: 10 }
   validates :amount, presence: true
@@ -11,17 +13,14 @@ class Task < ApplicationRecord
   scope :internal, -> { where.not(group_id: nil) }
 
   def icon_url
-    return group.icon_url if !group.nil?
-    
+    return group.icon_url unless group.nil?
+
     'default-group-icon.png'
   end
 
   protected
 
   def valid_time
-    unless !amount.nil? && amount > 0
-      errors.add(:amount, 'Invalid time spent')
-    end
+    errors.add(:amount, 'Invalid time spent') unless !amount.nil? && amount.positive?
   end
-
 end

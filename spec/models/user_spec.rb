@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -22,5 +24,4 @@ RSpec.describe User, type: :model do
     subject = users(:bad_email)
     expect(subject.valid?).to be_falsy
   end
-
 end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
   fixtures :users
   describe 'GET index' do
-    
     it 'redirects to login if not authenticated' do
       get :index
       expect(response).to have_http_status(:redirect)
@@ -23,7 +24,6 @@ RSpec.describe TasksController, type: :controller do
   end
 
   describe 'GET new' do
-    
     it 'redirects to login if not authenticated' do
       get :new
       expect(response).to have_http_status(:redirect)
@@ -40,11 +40,9 @@ RSpec.describe TasksController, type: :controller do
       get :new
       expect(response).to render_template('new')
     end
-
   end
 
   describe 'POST to /task' do
-
     it 'redirects to login if not authenticated' do
       post :create
       expect(response).to have_http_status(:redirect)
@@ -53,19 +51,18 @@ RSpec.describe TasksController, type: :controller do
     it 'renders new in presence of invalid/incomplete data' do
       sign_in users(:valid)
       post :create, params: { task: {
-            name: 'foo', hours: -1, minutes: -1 }
-        }
+        name: 'foo', hours: -1, minutes: -1
+      } }
       expect(response).to redirect_to('/tasks/new')
     end
 
     it 'renders index after saving valid task' do
       sign_in users(:valid)
       post :create, params: { task: {
-            name: 'Sample Task', hours: 1, minutes: 0 }
-        }
+        name: 'Sample Task', hours: 1, minutes: 0
+      } }
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to('/tasks')
     end
-
   end
 end

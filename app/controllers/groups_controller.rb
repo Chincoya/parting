@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :param_present?, only: [:create]
@@ -33,9 +35,7 @@ class GroupsController < ApplicationController
   protected
 
   def param_present?
-    unless params[:group].present?
-      redirect_to new_group_path
-    end
+    redirect_to new_group_path unless params[:group].present?
   end
 
   def group_params
@@ -43,6 +43,6 @@ class GroupsController < ApplicationController
   end
 
   def process_params(params)
-    return { name: params[:name].strip, icon: params[:icon] }
+    { name: params[:name].strip, icon: params[:icon] }
   end
 end

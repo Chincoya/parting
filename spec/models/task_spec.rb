@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
@@ -5,7 +7,7 @@ RSpec.describe Task, type: :model do
   subject { described_class.new }
 
   it 'is invalid without parameters' do
-    expect(subject.valid?).to be_falsy   
+    expect(subject.valid?).to be_falsy
   end
 
   it 'is invalid without name' do
@@ -37,5 +39,4 @@ RSpec.describe Task, type: :model do
     subject = tasks(:invalid_author)
     expect(subject.valid?).to be_falsy
   end
-
 end

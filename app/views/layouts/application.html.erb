@@ -10,9 +10,10 @@
   </head>
 
   <body>
-    <%= render 'shared/notices' %>
     <%= render  'shared/menu' %>
+    <%= render 'shared/notices' %>
     <main class="main" id="main">
+      <%= render  'shared/status' %>
       <%= yield %>
     </main>
     <%= javascript_pack_tag 'global' %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
@@ -21,10 +23,11 @@ RSpec.describe Group, type: :model do
 
   it 'is invalid if attachment is wrong type' do
     file = fixture_file_upload(
-            Rails.root.join('spec/fixtures/files',
-                            'dummy.txt'), 'text/plain')
+      Rails.root.join('spec/fixtures/files',
+                      'dummy.txt'), 'text/plain'
+    )
     subject = described_class.new(name: 'Sample Name Y',
-                              user_id: 1, icon: file)
+                                  user_id: 1, icon: file)
 
     expect(subject.valid?).to be_falsy
   end
@@ -36,12 +39,12 @@ RSpec.describe Group, type: :model do
 
   it 'returns attachment if attachment was correct' do
     file = fixture_file_upload(
-            Rails.root.join('spec/fixtures/files/', 'avatar-ninja.png'),
-                            'image/png')
+      Rails.root.join('spec/fixtures/files/', 'avatar-ninja.png'),
+      'image/png'
+    )
     subject = described_class.new(name: 'Sample Name z',
-              icon: file, user_id: 1)
+                                  icon: file, user_id: 1)
 
     expect(subject.icon_url).to be_an_instance_of(ActiveStorage::Attached::One)
   end
-
 end

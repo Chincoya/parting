@@ -1,19 +1,14 @@
 <% if user_signed_in? %>
-  <div class="status-bar">
-    <a class="menu-popper" id="menu-popper" >| | |</a>
-    <h2 class="status"><%= title_helper( yield :title ) %></h2>
-    <a class="search-link">Lens</a>
-  </div>
-  <div class='menu-container'>
-    <nav class="menu-popable" id="menu-poppable" >
-      <%= image_tag  current_user.icon_url, class: 'user-avatar' %>
-      <ul>
-        <li><%= current_user.name %></li>
-        <li><%= link_to  'My tasks', tasks_path(internal: true) %></li>
-        <li><%= link_to  'My external tasks', tasks_path %></li>
-        <li><%= link_to  'Groups', groups_path %></li>
-        <li><%= link_to  'Logout', destroy_user_session_path, method: :delete %></li>
-      </ul>
-    </nav>
-  </div>
+<div class='menu-container'>
+  <nav class="menu-popable" id="menu-poppable" >
+    <%= image_tag  current_user.icon_url, class: 'user-avatar' %>
+    <ul class="menu-list">
+      <li class="menu-item"><%= current_user.name %></li>
+      <li class="menu-item"><%= link_to  'My tasks', tasks_path(internal: true) %></li>
+      <li class="menu-item"><%= link_to  'My external tasks', tasks_path %></li>
+      <li class="menu-item"><%= link_to  'Groups', groups_path %></li>
+      <li class="menu-item"><%= link_to  'Logout', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </nav>
+</div>
 <% end %>

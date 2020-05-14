@@ -6,7 +6,20 @@ $text-color-bolder : #434b54;
 $text-color-bold: #555E67;
 $text-color-normal: #878A8F;
 $text-color-light: #989DA3;
-$menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 12.5%, rgb(41, 116, 173) 25%, rgb(23, 64, 110) 75%, rgb(18, 51, 92) 100%);;
+$menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 12.5%, rgb(41, 116, 173) 25%, rgb(23, 64, 110) 75%, rgb(18, 51, 92) 100%);
+$status-gradient: linear-gradient(0deg, rgba(49,134,198,0.9) 0%, rgba(29,54,93,0.4) 100%);;
+$main-box-shadow: -2px 2px 5px 0px rgba(26,26,26,1);
+$item-box-shadow: -2px 2px 3px -1px rgba(102,102,102,1);
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: font-url('Montserrat/Montserrat-Bold.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: font-url('Montserrat/Montserrat-Light.ttf') format('truetype');
+}
 
 * {
   /*border: 1px solid red;*/
@@ -14,13 +27,27 @@ $menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 1
   margin: 0;
   padding: 0;
 }
-:root {
-  height: 100%;
-  width: 100%;
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+@media screen and (min-width: 300px) and (max-width: 1200px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
 }
 
 body {
-  background-color: white;
+  background-color: $main-background-color;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -29,24 +56,63 @@ body {
 }
 
 a {
-  display: block;
+  align-items: center;
+  display: flex;
+  font-family: 'Montserrat-Light';
+  font-weight: bold;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 .main {
   background-color: $main-background-color;
   height: 100%;
   left: 0;
-  position: fixed;
+  position: absolute;
   transition: top 0.5s, left 0.5s, height 0.5s;
-  top: 10%;
+  top: 0;
   width: 100%;
   z-index: 1000;
+
+  -webkit-box-shadow: $main-box-shadow;
+  -moz-box-shadow: $main-box-shadow;
+  box-shadow: $main-box-shadow;
 }
 
 .main-phased {
   height: 70%;
   top: 15%;
   left: 80%;
+}
+
+.status-bar {
+  padding: 4%;
+  background-image: $status-gradient;
+  .status {
+    font-family: 'Montserrat-Light';
+    color: white;
+    font-size: 18px;
+  }
+  a {
+    color: white;
+    display: block;
+    .menu-bar1, .menu-bar2, .menu-bar3 {
+      width: 28px;
+      height: 3.5px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .changed-top {
+      width: 20px;
+      transform: rotate(-35deg) translate(-4px, 0.3px);
+    }
+    .changed-bot {
+      width: 20px;
+      transform: rotate(35deg) translate(-4px, -0.3px);
+    }
+  }
 }
 
 .form-error {
@@ -65,26 +131,26 @@ a {
   align-items: center;
   background-color: $main-color;
   display: flex;
-  height: 10vh;
+  height: 10%;
   justify-content: space-between;
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
   z-index: 950;
 }
 
 .group-avatar {
-  border-radius: 50%;
-  height: auto;
-  width: 25px;
+  border-radius: 5px;
+  height: 80%;
+  width: auto;
 }
 
 .menu-container {
   background-color: $main-color;
   background-image: $menu-gradient;
   height: 100%;
-  position: fixed;
-  padding-top: 10vh;
+  position: absolute;
+  padding-top: 10%;
   top: 0;
   width: 100%;
   z-index: 900;
@@ -93,6 +159,18 @@ a {
 .menu-popper {
   position: relative;
   z-index: 1000;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  color: $text-color-light;
+  a {
+    color: inherit;
+  }
 }
 
 .flash-container {
@@ -108,7 +186,7 @@ a {
   div {
     align-items: center;
     border: solid 1px white;
-    border-radius: 5%;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     height: 80%;
@@ -122,4 +200,58 @@ a {
 
 .flash-error {
   background-color: $error-color;
+}
+
+.items-container {
+  height: 90%;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: start;
+}
+
+.items-entry {
+  background-color: white;
+  color: $text-color-normal;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat-Light';
+  height: 15%;
+  list-style: none;
+  margin: 10px 2.5%;
+  padding: 8px;
+  width: 95%;
+
+  -webkit-box-shadow: $item-box-shadow;
+  -moz-box-shadow: $item-box-shadow;
+  box-shadow: $item-box-shadow;
+
+}
+
+.new-item-link {
+  background-color: $secondary-color;
+  bottom: 0;
+  color: white;
+  height: 100px;
+  padding: 5%;
+  position: fixed;
+  transition: bottom 0.5s, left 0.5s, height 0.5s;
+  width: 100%;
+  span {
+    align-items: center;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.nitem-link-phased {
+  bottom: 15%;
+  height: 70px;
 }

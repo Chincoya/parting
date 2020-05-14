@@ -1,3 +1,5 @@
 <%= render 'shared/dashboard', locals: {itemizable: @groups } %>
-<%= link_to  'Add group', new_group_path %>
+<%= link_to new_group_path, class: 'new-item-link' do %>
+  <span>ADD GROUP</span>
+<%  end %>
 <%= javascript_pack_tag 'landing' %>

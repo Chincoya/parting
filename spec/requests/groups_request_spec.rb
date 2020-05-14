@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe GroupsController, type: :controller do
@@ -14,7 +16,7 @@ RSpec.describe GroupsController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
     end
-  
+
     it 'renders the index template' do
       sign_in users(:valid)
       get :index
@@ -23,7 +25,6 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe 'GET new' do
-    
     it 'redirects to login if not authenticated' do
       get :new
       expect(response).to have_http_status(:redirect)
@@ -40,11 +41,9 @@ RSpec.describe GroupsController, type: :controller do
       get :new
       expect(response).to render_template('new')
     end
-
   end
 
   describe 'POST to /groups' do
-
     it 'redirects to login if not authenticated' do
       post :create
       expect(response).to have_http_status(:redirect)
@@ -52,20 +51,17 @@ RSpec.describe GroupsController, type: :controller do
 
     it 'renders new in presence of invalid/incomplete data' do
       sign_in users(:valid)
-      post :create, params: { task: { }
-        }
+      post :create, params: { task: {} }
       expect(response).to redirect_to('/groups/new')
     end
 
     it 'renders index after saving valid task' do
       sign_in users(:valid)
       post :create, params: { group: {
-            name: 'Sample Group' }
-        }
+        name: 'Sample Group'
+      } }
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to('/groups')
     end
-
   end
-
 end

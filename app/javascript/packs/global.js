@@ -7,5 +7,8 @@ $(document).ready(() => {
 
 $('#menu-popper').click(() => {
   $('#main').toggleClass('main-phased')
+  $('#new-item-link').toggleClass('nitem-link-phased')
+  $('#menu-bar1').toggleClass('changed-top')
+  $('#menu-bar3').toggleClass('changed-bot')
 })
 
