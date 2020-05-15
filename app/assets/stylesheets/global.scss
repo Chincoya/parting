@@ -41,7 +41,7 @@ html {
   overflow: hidden;
 }
 
-@media screen and (min-width: 300px) and (orientation: landscape) {
+@media screen and (min-width: 300px) and (min-aspect-ratio: 3/2) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
