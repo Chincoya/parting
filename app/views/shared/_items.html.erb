@@ -1,7 +1,17 @@
 <li class="items-entry">
   <%= image_tag  self.uncache_icons(itemizables), class: 'group-avatar' %>
-  <%= itemizables[:name] %>
-  <%= itemizables[:hours] if itemizables[:hours] %>
-  <%= itemizables[:minutes] if itemizables[:minutes] %>
-  <%= itemizables[:created_at] %>
+  <div class="item-details">
+    <div class="item-text">
+      <div class="item-name"><%= itemizables[:name] %></div>
+      <div class="item-date"><%= date_helper itemizables[:created_at] %></div>
+    </div>
+    <div class="item-app">
+    <% if itemizables[:amount] %>
+      <%= to_time_format(itemizables[:amount]) %>
+    <% end %>
+  </div>
+  </div>
+  <% if linkable %>
+    <%= link_to nil, itemizables, class: 'item-link-cover' %>
+  <% end %>
 </li>

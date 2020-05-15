@@ -10,5 +10,6 @@ $('#menu-popper').click(() => {
   $('#new-item-link').toggleClass('nitem-link-phased')
   $('#menu-bar1').toggleClass('changed-top')
   $('#menu-bar3').toggleClass('changed-bot')
+  $('#items-list').toggleClass('items-list-phased')
 })
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  validates :name, presence: true, length: { minimum: 10 }
+  validates :name, presence: true, length: { minimum: 8, maximum: 30 }
   validates :amount, presence: true
   validate :valid_time
   validates_associated :author

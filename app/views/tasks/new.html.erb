@@ -1,4 +1,4 @@
-<%= form_tag '/tasks' do |f| %>
+<%= form_tag '/tasks', class: 'form-action', id: 'new_task' do |f| %>
   <%= label_tag 'task[group]', 'Group' %>
   <%= select_tag 'task[group]', options_for_select(@groups) %>
   <%= label_tag 'task[name]', 'Task:' %>
@@ -9,7 +9,9 @@
     <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0 %>
     <%= label_tag 'task[minutes]', "MM  " %>
   </div>
-  <%= submit_tag 'Add Task' %>
+<% end %>
+
+<% content_for :action_button do %>
+  <%= button_tag 'Next', type: 'submit', class: 'action-button', id: 'form-submit', form: 'new_task' %>
 <% end %>
 <%= javascript_pack_tag 'landing' %>
-<%= javascript_pack_tag 'form_watcher' %>

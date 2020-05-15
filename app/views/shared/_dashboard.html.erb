@@ -1,5 +1,6 @@
 <div class="items-container">
-  <ul class="items-list">
-    <%= render partial: 'shared/items', collection: locals[:itemizable], as: :itemizables, cached: true %>
+  <ul class="items-list" id="items-list">
+    <%= render partial: 'shared/items', collection: locals[:itemizable],
+       as: :itemizables, locals: { linkable: locals[:linkable] } %>
   </ul>
 </div>

@@ -62,7 +62,7 @@ RSpec.describe TasksController, type: :controller do
         name: 'Sample Task', hours: 1, minutes: 0
       } }
       expect(response).to have_http_status(:redirect)
-      expect(response).to redirect_to('/tasks')
+      expect(response).to redirect_to('/tasks?internal=true')
     end
   end
 end
