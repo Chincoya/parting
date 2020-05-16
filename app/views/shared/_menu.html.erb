@@ -1,13 +1,27 @@
 <% if user_signed_in? %>
 <div class='menu-container'>
-  <nav class="menu-popable" id="menu-poppable" >
-    <%= image_tag  current_user.icon_url, class: 'user-avatar' %>
-    <div class="menu-item"><%= current_user.name %></div>
+  <nav class="menu-poppable" id="menu-poppable" >
+    <div class="menu-user-container">
+      <%= image_tag  current_user.icon_url, class: 'user-avatar' %>
+      <div class="user-name"><%= current_user.name %></div>
+    </div>
     <ul class="menu-list">
-      <li class="menu-item"><%= link_to  'My tasks', tasks_path(internal: true) %></li>
-      <li class="menu-item"><%= link_to  'My external tasks', tasks_path %></li>
-      <li class="menu-item"><%= link_to  'Groups', groups_path %></li>
-      <li class="menu-item"><%= link_to  'Logout', destroy_user_session_path, method: :delete %></li>
+      <li class="menu-item">
+        <%= image_tag  "tasks-icon.png", class: "menu-list-icon" %>
+        <%= link_to  'My tasks', tasks_path(internal: true) %>
+      </li>
+      <li class="menu-item">
+        <%= image_tag  "external-icon.png", class: "menu-list-icon" %>
+        <%= link_to  'My external tasks', tasks_path %>
+      </li>
+      <li class="menu-item">
+        <%= image_tag  "groups-icon.png", class: 'menu-list-icon' %>
+        <%= link_to  'Groups', groups_path %>
+      </li>
+      <li class="menu-item">
+        <%= image_tag  "logout-icon.png", class: "menu-list-icon" %>
+        <%= link_to  'Logout', destroy_user_session_path, method: :delete %>
+      </li>
     </ul>
   </nav>
 </div>

@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+### Attributions
+
+Additional Icons fetched from Flaticon.com, authored by:
+  - Pixel Perfect
+  - Freelk
+  - Ddara
