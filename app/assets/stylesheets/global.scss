@@ -8,7 +8,7 @@ $text-color-normal: #878A8F;
 $text-color-light: #989DA3;
 $text-color-lighter: #D7D5D5;
 $menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 12.5%, rgb(41, 116, 173) 25%, rgb(23, 64, 110) 75%, rgb(18, 51, 92) 100%);
-$status-gradient: linear-gradient(0deg, rgba(49,134,198,0.9) 0%, rgba(29,54,93,0.4) 100%);;
+$status-gradient: linear-gradient(0deg, rgba(49,134,198,0.9) 0%, rgba(29,54,93,0.4) 100%);
 $main-box-shadow: -2px 2px 5px 0px rgba(26,26,26,1);
 $item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
 
@@ -232,12 +232,14 @@ a {
   justify-content: center;
   align-items: center;
   position: fixed;
-  left: 30%;
-  top: 0;
-  width: 40%;
-  height: 10%;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
   z-index: 1100;
   div {
+    font-family: 'Montserrat-Light';
+    font-size: 120%;
+    color: white;
     align-items: center;
     border: solid 1px white;
     border-radius: 5px;

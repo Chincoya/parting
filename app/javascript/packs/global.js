@@ -1,7 +1,7 @@
 $(document).ready(() => {
   setTimeout(() => {
-    $('.flash-container').fadeOut(2000)
-  }, 2000)
+    $('.flash-container').fadeOut(1500)
+  }, 1500)
 })
 
 

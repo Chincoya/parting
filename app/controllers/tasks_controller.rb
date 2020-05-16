@@ -6,6 +6,9 @@ class TasksController < ApplicationController
     @cached_icons = {}
     @tasks = if params[:internal].present?
                Task.internal.where('author_id = ?', current_user.id).order(created_at: :desc)
+             elsif params[:query].present?
+               Task.where(author_id: current_user.id).where('name ILIKE :query', query: "%#{params[:query]}%")
+                 .order(created_at: :desc)
              else
                Task.external.where('author_id = ?', current_user.id).order(created_at: :desc)
              end
