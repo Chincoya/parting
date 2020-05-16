@@ -1,12 +1,14 @@
-<% provide(:title, 'New Group') %>
+<% provide(:title, 'NEW GROUP') %>
 
 <%= form_for @group, class: 'form-action' do |f| %>
-  <%= f.label :name %><br/>
-  <%= f.text_field :name %>
-  <hr/>
-  <%= f.label :icon %><br/>
-  <%= f.file_field :icon, accept: 'image/png,image/jpeg' %>
-  <!--<%= f.submit %>-->
+  <div class="field">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %><br/>
+    <%= f.file_field :icon, accept: 'image/png,image/jpeg' %>
+  </div>
 <% end %>
 
 <% content_for :action_button do %>

@@ -1,13 +1,19 @@
 <%= form_tag '/tasks', class: 'form-action', id: 'new_task' do |f| %>
-  <%= label_tag 'task[group]', 'Group' %>
-  <%= select_tag 'task[group]', options_for_select(@groups) %>
-  <%= label_tag 'task[name]', 'Task:' %>
-  <%= text_field_tag 'task[name]', nil, placeholder: 'Your task' %><br/>
-  <div class="task-time-container">
-    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0 %>
+  <div class="field">
+    <%= label_tag 'task[group]', 'Group' %>
+    <%= select_tag 'task[group]', options_for_select(@groups) %>
+  </div>
+  <div class="field">
+    <%= label_tag 'task[name]', 'Task:' %>
+    <%= text_field_tag 'task[name]', nil, placeholder: 'Your task name' %><br/>
+  </div>
+  <div class="field">
     <%= label_tag 'task[hours]', "HH / " %>
-    <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0 %>
-    <%= label_tag 'task[minutes]', "MM  " %>
+    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0 %>
+  </div>
+  <div class="field">
+      <%= label_tag 'task[minutes]', "MM  " %>
+      <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0 %>
   </div>
 <% end %>
 
