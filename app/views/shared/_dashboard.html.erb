@@ -1,6 +1,12 @@
 <div class="items-container">
-  <ul class="items-list" id="items-list">
-    <%= render partial: 'shared/items', collection: locals[:itemizable],
-       as: :itemizables, locals: { linkable: locals[:linkable] } %>
-  </ul>
+  <% if !locals[:itemizable].empty? %>
+    <ul class="items-list" id="items-list">
+      <%= render partial: 'shared/items', collection: locals[:itemizable],
+        as: :itemizables, locals: { linkable: locals[:linkable] } %>
+    </ul>
+  <% else %>
+    <div class="empty-list">
+      There's nothing here :c
+    </div>
+  <% end %>
 </div>

@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   def index
     @cached_icons = {}
-    @groups = Group.all.order(:name)
+    @groups = current_user.groups.order(:name)
   end
 
   def show

@@ -4,20 +4,17 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Your name' %>
   </div>
 
   <div class="field">
     <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email", placeholder: 'your@mail.com' %>
   </div>
 
   <div class="field">
     <%= f.label :password, 'Pwd' %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> chars min)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", pattern: ".{6,}", title: 'Six or more characters', placeholder: '******' %>
   </div>
 
   <div class="field">

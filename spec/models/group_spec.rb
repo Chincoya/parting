@@ -3,22 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  fixtures :groups, :users
-
-  subject { described_class.new }
+  before(:all) do
+    @user = create(:user)
+  end
 
   it 'is invalid without parameters' do
-    expect(subject.valid?).to be_falsy
+    group = build(:group, name: nil, user_id: nil)
+    expect(group.valid?).to be_falsy
   end
 
   it 'is invalid without name' do
-    subject = groups(:no_name)
-    expect(subject.valid?).to be_falsy
+    group = build(:group, name: nil)
+    expect(group.valid?).to be_falsy
   end
 
   it 'is valid with valid name' do
-    subject = groups(:user_created)
-    expect(subject.valid?).to be_truthy
+    group = build(:group)
+    expect(group.valid?).to be_truthy
   end
 
   it 'is invalid if attachment is wrong type' do
@@ -26,15 +27,14 @@ RSpec.describe Group, type: :model do
       Rails.root.join('spec/fixtures/files',
                       'dummy.txt'), 'text/plain'
     )
-    subject = described_class.new(name: 'Sample Name Y',
-                                  user_id: 1, icon: file)
+    group = build(:group, icon: file)
 
-    expect(subject.valid?).to be_falsy
+    expect(group.valid?).to be_falsy
   end
 
   it 'returns default icon if no icon is present' do
-    subject = groups(:user_created)
-    expect(subject.icon_url).to match(/default-group/)
+    group = build(:group)
+    expect(group.icon_url).to match(/default-group/)
   end
 
   it 'returns attachment if attachment was correct' do
@@ -42,9 +42,8 @@ RSpec.describe Group, type: :model do
       Rails.root.join('spec/fixtures/files/', 'avatar-ninja.png'),
       'image/png'
     )
-    subject = described_class.new(name: 'Sample Name z',
-                                  icon: file, user_id: 1)
+    group = build(:group, icon: file, user_id: 1)
 
-    expect(subject.icon_url).to be_an_instance_of(ActiveStorage::Attached::One)
+    expect(group.icon_url).to be_an_instance_of(ActiveStorage::Attached::One)
   end
 end

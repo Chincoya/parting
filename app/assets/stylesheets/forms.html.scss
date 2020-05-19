@@ -31,6 +31,7 @@ $item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
   height: 70px;
   border-bottom: 1px solid rgba($color: $text-color-lighter, $alpha: 1.0);
   margin-left: 4%;
+  font-size: 16px;
   label {
     display: inline-block;
     width: 20%;
@@ -42,6 +43,7 @@ $item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
     width: 75%;
     border: none;
     background-color: white;
+    font-size: inherit;
   }
 }
 

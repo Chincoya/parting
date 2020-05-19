@@ -9,11 +9,11 @@
   </div>
   <div class="field">
     <%= label_tag 'task[hours]', "HH / " %>
-    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0 %>
+    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0, placeholder: '0-24'%>
   </div>
   <div class="field">
       <%= label_tag 'task[minutes]', "MM  " %>
-      <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0 %>
+      <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0, placeholder: '0-59' %>
   </div>
 <% end %>
 

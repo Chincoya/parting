@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
-  fixtures :users
+
   describe 'GET index' do
     it 'redirects to login if not authenticated' do
       get :index
@@ -11,13 +11,13 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it 'gets to index of tasks if authenticated' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :index
       expect(response).to have_http_status(:success)
     end
 
     it 'renders the index template' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :index
       expect(response).to render_template('index')
     end
@@ -30,13 +30,13 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it 'gets to new task form if authenticated' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :new
       expect(response).to have_http_status(:success)
     end
 
     it 'renders the new template' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :new
       expect(response).to render_template('new')
     end
@@ -49,7 +49,7 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it 'renders new in presence of invalid/incomplete data' do
-      sign_in users(:valid)
+      sign_in create(:user)
       post :create, params: { task: {
         name: 'foo', hours: -1, minutes: -1
       } }
@@ -57,7 +57,7 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it 'renders index after saving valid task' do
-      sign_in users(:valid)
+      sign_in create(:user)
       post :create, params: { task: {
         name: 'Sample Task', hours: 1, minutes: 0
       } }

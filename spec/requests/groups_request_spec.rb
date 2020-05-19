@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe GroupsController, type: :controller do
-  fixtures :groups, :users
+
 
   describe 'GET' do
     it 'redirects if not authenticated' do
@@ -12,13 +12,13 @@ RSpec.describe GroupsController, type: :controller do
     end
 
     it 'gets to index of groups if authenticated' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :index
       expect(response).to have_http_status(:success)
     end
 
     it 'renders the index template' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :index
       expect(response).to render_template('index')
     end
@@ -31,13 +31,13 @@ RSpec.describe GroupsController, type: :controller do
     end
 
     it 'gets to new group form authenticated' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :new
       expect(response).to have_http_status(:success)
     end
 
     it 'renders the index template' do
-      sign_in users(:valid)
+      sign_in create(:user)
       get :new
       expect(response).to render_template('new')
     end
@@ -50,13 +50,13 @@ RSpec.describe GroupsController, type: :controller do
     end
 
     it 'renders new in presence of invalid/incomplete data' do
-      sign_in users(:valid)
-      post :create, params: { task: {} }
+      sign_in create(:user)
+      post :create, params: { group: {} }
       expect(response).to redirect_to('/groups/new')
     end
 
     it 'renders index after saving valid task' do
-      sign_in users(:valid)
+      sign_in create(:user)
       post :create, params: { group: {
         name: 'Sample Group'
       } }

@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :param_present?, only: [:create]
   def index
     @cached_icons = {}
     @tasks = if params[:internal].present?
@@ -15,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @groups = Group.all.map(&:name).unshift('None')
+    @groups = current_user.groups.map(&:name).unshift('None')
 
     @task = Task.new
   end
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
   protected
 
   def param_present?
-    redirect_to new_task_path unless params[:group].present?
+    redirect_to new_task_path unless params[:task].present?
   end
 
   def task_params

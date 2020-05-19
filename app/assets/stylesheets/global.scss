@@ -260,8 +260,8 @@ a {
 
 .group-avatar {
   border-radius: 5px;
-  height: 80%;
-  width: auto;
+  height: 70px;
+  width: 70px;
 }
 
 
@@ -382,4 +382,15 @@ a {
   left: 0;
   height: 100%;
   width: 100%;
+}
+
+.empty-list {
+  color: $text-color-lighter;
+  width: 100%;
+  height: 20%;
+  margin: 10% 0;
+  text-align: center;
+  font-family: 'Montserrat-Medium';
+  font-weight: normal;
+  font-size: 20px;
 }

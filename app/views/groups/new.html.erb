@@ -3,7 +3,7 @@
 <%= form_for @group, class: 'form-action' do |f| %>
   <div class="field">
     <%= f.label :name %><br/>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: 'The name of your group' %>
   </div>
   <div class="field">
     <%= f.label :icon %><br/>
