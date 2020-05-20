@@ -4,15 +4,17 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :param_present?, only: [:create]
   def index
+    @user = current_user
     @tasks = if params[:internal].present?
-               Task.internal.where('author_id = ?', current_user.id).order(created_at: :desc)
+               Task.includes(:first_group).internal.where('author_id = ?', @user.id)
+                 .order(created_at: :desc).references(:groups)
              elsif params[:query].present?
-               Task.where(author_id: current_user.id).where('name ILIKE :query', query: "%#{params[:query]}%")
-                 .order(created_at: :desc)
+               Task.where(author_id: @user.id).where('name ILIKE :query', query: "%#{params[:query]}%")
+                 .references(:groups).order(created_at: :desc)
              else
-               Task.external.where('author_id = ?', current_user.id).order(created_at: :desc)
+               Task.external.where('author_id = ?', @user.id).order(created_at: :desc)
              end
-    @cached_icons = {}
+    @cached_icons = cache_icons(@tasks)
   end
 
   def new
@@ -22,11 +24,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    if current_user.tasks.create(process_params(task_params)).valid?
+    @user = current_user
+    @task = @user.tasks.create(process_params(task_params))
+    if @task.valid?
       flash[:sucess] = 'Task created'
       redirect_to tasks_path(internal: true)
     else
-      flash[:error] = 'Error creting task'
+      flash[:error] = @task.errors.full_messages
       redirect_to new_task_path
     end
   end
@@ -46,19 +50,23 @@ class TasksController < ApplicationController
   end
 
   def process_params(params)
-    valid_groups = if params[:groups] != ""
-                    current_user.groups.where('name IN (?)', JSON.parse(params[:groups]).keys)
-                  else
-                    []
-                  end
+    valid_groups = if params[:groups] != ''
+                     @user.groups.where('name IN (?)', JSON.parse(params[:groups]).keys)
+                   else
+                     []
+                   end
 
-    group = if valid_groups.first
-              valid_groups.first.id
-            else
-              nil
-            end
+    group = valid_groups.first&.id
 
     { name: params[:name].strip,
       amount: ((params[:hours].to_i * 60) + params[:minutes].to_i), first_group_id: group, groups: valid_groups }
+  end
+
+  def cache_icons(collection)
+    cache = {}
+    collection.each do |task|
+      cache[task.first_group_id] = task.first_group.icon_url unless task.first_group_id.nil?
+    end
+    cache
   end
 end

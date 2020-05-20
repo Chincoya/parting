@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
-
   describe 'GET /home' do
     it 'redirects to login page if not logged in' do
       get :home

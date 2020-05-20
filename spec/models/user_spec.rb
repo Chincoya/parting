@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
-
   it 'is invalid without parameters' do
     user = build(:user, name: nil, email: nil, password: nil)
     expect(user.valid?).to be_falsy
@@ -22,7 +20,7 @@ RSpec.describe User, type: :model do
 
   it 'is invalid if email does not match regex validation' do
     user = build(:user, name: 'Bob Exotic', email: 'bobexotic.com', password: 'password')
-    expect(subject.valid?).to be_falsy
+    expect(user.valid?).to be_falsy
   end
 
   it 'is valid with valid parameters' do

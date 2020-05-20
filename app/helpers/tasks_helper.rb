@@ -2,8 +2,9 @@
 
 module TasksHelper
   def uncache_icons(task)
-    @cached_icons[task.first_group_id] = task.icon_url unless @cached_icons.include? task.group_id
+    puts task[:first_group_id]
+    return @cached_icons[task.first_group_id] unless task.first_group_id.nil?
 
-    @cached_icons[task.first_group_id]
+    'default-group-icon'
   end
 end

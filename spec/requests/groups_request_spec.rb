@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe GroupsController, type: :controller do
-
-
   describe 'GET' do
     it 'redirects if not authenticated' do
       get :index
