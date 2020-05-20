@@ -1,5 +1,5 @@
 <div class="items-container">
-  <% if !locals[:itemizable].empty? %>
+  <% if locals[:itemizable].length != 0 %>
     <ul class="items-list" id="items-list">
       <%= render partial: 'shared/items', collection: locals[:itemizable],
         as: :itemizables, locals: { linkable: locals[:linkable] } %>

@@ -6,7 +6,7 @@ class Group < ApplicationRecord
 
   belongs_to :user
   has_one_attached :icon
-  has_many :tasks
+  has_and_belongs_to_many :tasks
 
   def icon_url
     return icon if icon.attached?

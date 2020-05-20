@@ -51,7 +51,7 @@ RSpec.describe TasksController, type: :controller do
     it 'renders new in presence of invalid/incomplete data' do
       sign_in create(:user)
       post :create, params: { task: {
-        name: 'foo', hours: -1, minutes: -1
+        name: 'foo', hours: -1, minutes: -1, groups: ''
       } }
       expect(response).to redirect_to('/tasks/new')
     end
@@ -59,7 +59,7 @@ RSpec.describe TasksController, type: :controller do
     it 'renders index after saving valid task' do
       sign_in create(:user)
       post :create, params: { task: {
-        name: 'Sample Task', hours: 1, minutes: 0
+        name: 'Sample Task', hours: 1, minutes: 0, groups: ''
       } }
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to('/tasks?internal=true')
