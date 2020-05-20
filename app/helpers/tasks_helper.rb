@@ -5,6 +5,6 @@ module TasksHelper
     puts task[:first_group_id]
     return @cached_icons[task.first_group_id] unless task.first_group_id.nil?
 
-    'default-group-icon'
+    'default-group-icon.png'
   end
 end
