@@ -42,10 +42,18 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :hours, :minutes, :group)
+    params.require(:task).permit(:name, :hours, :minutes, :group, :groups)
   end
 
   def process_params(params)
+    valid_goups = current_user.groups.where('name IN (?)', JSON.parse(params[:groups]).keys)
+    10.times do |i|
+      puts '***'
+    end
+    puts valid_goups
+    10.times do |i|
+      puts '***'
+    end
     group = (Group.find_by(name: params[:group]).id if params[:group].present? && params[:group] != 'None')
 
     { name: params[:name].strip,

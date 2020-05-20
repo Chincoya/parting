@@ -45,6 +45,17 @@ $item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
     background-color: white;
     font-size: inherit;
   }
+
+  .selected-option {
+    display: inline-block;
+    font-size: 70%;
+    font-weight: bold;
+    background-color: $text-color-light;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 3px;
+    height: 30px;
+  }
 }
 
 .field:last-child {
@@ -75,4 +86,9 @@ $item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
     height: 90%;
     width: 90%;
   }
+}
+
+.selector-displayer {
+  flex-wrap: wrap;
+  overflow-y: auto;
 }

@@ -1,7 +1,10 @@
 <%= form_tag '/tasks', class: 'form-action', id: 'new_task' do |f| %>
+  <%= hidden_field_tag 'task[groups]', value="", id: 'selection-holder' %>
+  <div class="field selector-displayer" id="selector-displayer">
+  </div>
   <div class="field">
     <%= label_tag 'task[group]', 'Group' %>
-    <%= select_tag 'task[group]', options_for_select(@groups) %>
+    <%= select_tag 'task[group]', options_for_select(@groups), id: 'group-select', selected: 'None' %>
   </div>
   <div class="field">
     <%= label_tag 'task[name]', 'Task:' %>
@@ -15,9 +18,20 @@
       <%= label_tag 'task[minutes]', "MM  " %>
       <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0, placeholder: '0-59' %>
   </div>
-<% end %>
+  <!--
+  <ul class="items-list group-select" id="group-select">
+    <% @groups.each do |group| %>
+      <li class="items-entry">
+        <%= label_tag "task[group][#{group.to_sym}]", group %>
+        <%= check_box_tag (group) %>
+      </li>
+    <% end %>
+    <li class="items-entry" id="group-select-ok">Ok</li>
+  </ul>
+<% end %>-->
 
 <% content_for :action_button do %>
   <%= button_tag 'Next', type: 'submit', class: 'action-button', id: 'form-submit', form: 'new_task' %>
 <% end %>
 <%= javascript_pack_tag 'landing' %>
+<%= javascript_pack_tag 'form_watcher' %>
