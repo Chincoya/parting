@@ -17,6 +17,12 @@ module ApplicationHelper
     "<span class=\"time\">#{time}</span>".html_safe
   end
 
+  def to_time_total_format(amount)
+    time = Time.at(amount * 60).utc.strftime('%jD:%HH:%MM')
+
+    "<span class=\"time\">#{time}</span>".html_safe
+  end
+
   def action_button_helper(button)
     return '<div class="action-button"></div>'.html_safe if button.blank?
 

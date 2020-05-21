@@ -41,7 +41,7 @@ html {
   overflow: hidden;
 }
 
-@media screen and (min-width: 300px) and (min-aspect-ratio: 3/2) and (orientation: landscape) {
+@media screen and (min-width: 300px) and (min-aspect-ratio: 3/2) and (max-width: 992px) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
@@ -55,7 +55,10 @@ html {
 }
 
 body {
-  background-color: $main-background-color;
+  background-color: $main-color;
+  background-image: $menu-gradient;
+  background-size: cover;
+  background-attachment: fixed;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -92,6 +95,7 @@ a {
   height: 70%;
   top: 15%;
   left: 80%;
+  overflow: hidden;
 }
 
 .status-bar {
@@ -157,12 +161,9 @@ a {
 }
 
 .menu-container {
-  background-color: $main-color;
-  background-image: $menu-gradient;
   height: 100%;
   position: absolute;
-  padding-top: 15%;
-  top: 0;
+  top: 15%;
   width: 100%;
   z-index: 900;
 }
@@ -188,11 +189,31 @@ a {
   }
 }
 
+/*
+  HERE lies the media query for desktop 'compatibility'.
+  I leave this comment for reviewers and maintainability
+*/
+
+@media (min-width: 992px) {
+  .main {
+    left: initial;
+    right: 0;
+    width: 70%;
+    position: absolute;
+  }
+  .menu-poppable {
+    width: 30%;
+  }
+  .menu-popper {
+    display: none !important;
+  }
+}
+
 .user-avatar {
   border: 1px solid $text-color-light;
   border-radius: 50%;
-  height: 60%;
-  width: auto;
+  height: 80px;
+  width: 80px;
 }
 
 .menu-list {
@@ -272,7 +293,7 @@ a {
 .items-list {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 100px);
+  height: calc(100% - 170px);
   justify-content: start;
   list-style: none;
   overflow-y: scroll;
@@ -356,7 +377,7 @@ a {
   bottom: 0;
   color: white;
   height: 100px;
-  padding: 5%;
+  padding: 10px;
   position: absolute;
   transition: bottom 0.5s, left 0.5s, height 0.5s;
   width: 100%;
@@ -393,4 +414,27 @@ a {
   font-family: 'Montserrat-Medium';
   font-weight: normal;
   font-size: 20px;
+}
+
+.substatus {
+  margin: 0;
+  height: 70px;
+  width: 100%;
+}
+
+.substatus-details {
+  width: 100%;
+  font-weight: bolder;
+  [class^=substatus] {
+    display: flex;
+    align-items: center;
+    width: 50%;
+  }
+  .substatus-text {
+    padding-left: 2.5%;
+  }
+  .substatus-data {
+    justify-content: center;
+    font-family: 'Montserrat-Bold';
+  }
 }

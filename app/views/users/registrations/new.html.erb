@@ -26,10 +26,15 @@
     <%= f.label :icon %>
     <%= f.file_field :icon, accept: 'image/jpeg,image/png' %>
   </div>  
+<% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<% content_for :action_button do %>
+  <%= button_tag  'Next', type: 'submit', class: 'action-button', if: 'form-submit', form: 'new_user' %>
+<% end %>
+
+<% content_for :back_button do %>
+  <%= link_to 'Back', '/' , class: 'action-button' %>
 <% end %>
 
 <%= render "users/shared/links" %>
+<%= javascript_pack_tag "landing" %>

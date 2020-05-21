@@ -1,10 +1,14 @@
-<% if user_signed_in? %>
+<% if controller_name != 'static_pages' %>
   <div class="status-bar">
-    <a class="menu-popper" id="menu-popper" >
-      <div class="menu-bar1" id="menu-bar1"></div>
-      <div class="menu-bar2"></div>
-      <div class="menu-bar3" id="menu-bar3"></div>
-    </a>
+    <%if user_signed_in? %>
+      <a class="menu-popper" id="menu-popper" >
+        <div class="menu-bar1" id="menu-bar1"></div>
+        <div class="menu-bar2"></div>
+        <div class="menu-bar3" id="menu-bar3"></div>
+      </a>
+    <% elsif content_for?(:back_button) %>
+      <%= yield :back_button %>
+    <% end %>
     <h2 class="status"><%= title_helper( yield :title ) %></h2>
     <%= action_button_helper( yield :action_button )%>
     <%= yield :search %>

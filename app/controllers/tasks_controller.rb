@@ -15,6 +15,7 @@ class TasksController < ApplicationController
                Task.external.where('author_id = ?', @user.id).order(created_at: :desc)
              end
     @cached_icons = cache_icons(@tasks)
+    @total = total_hours_from_collection(@tasks)
   end
 
   def new
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
     @user = current_user
     @task = @user.tasks.create(process_params(task_params))
     if @task.valid?
-      flash[:sucess] = 'Task created'
+      flash[:success] = 'Task created'
       redirect_to tasks_path(internal: true)
     else
       flash[:error] = @task.errors.full_messages
@@ -40,6 +41,10 @@ class TasksController < ApplicationController
   end
 
   protected
+
+  def total_hours_from_collection(collection)
+    collection.inject(0) { |sum, item| sum + item.amount }
+  end
 
   def param_present?
     redirect_to new_task_path unless params[:task].present?
