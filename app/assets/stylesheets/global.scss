@@ -207,6 +207,11 @@ a {
   .menu-popper {
     display: none !important;
   }
+
+  .status-bar {
+    padding: 25px;
+    height: initial;
+  }
 }
 
 .user-avatar {
@@ -420,6 +425,7 @@ a {
   margin: 0;
   height: 70px;
   width: 100%;
+  border-bottom: 1px solid $text-color-lighter;
 }
 
 .substatus-details {
