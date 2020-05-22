@@ -41,19 +41,6 @@ html {
   overflow: hidden;
 }
 
-@media screen and (min-width: 300px) and (min-aspect-ratio: 3/2) and (max-width: 992px) and (orientation: landscape) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-}
-
 body {
   background-color: $main-color;
   background-image: $menu-gradient;
@@ -400,6 +387,7 @@ a {
 .nitem-link-phased {
   height: 70px;
 }
+
 
 .item-link-cover {
   position: absolute;
