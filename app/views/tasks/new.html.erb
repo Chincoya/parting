@@ -1,0 +1,26 @@
+<%= form_tag '/tasks', class: 'form-action', id: 'new_task' do |f| %>
+  <%= hidden_field_tag 'task[groups]', value="", id: 'selection-holder' %>
+  <div class="field selector-displayer" id="selector-displayer">
+  </div>
+  <div class="field">
+    <%= label_tag 'group-select', 'Group' %>
+    <%= select_tag 'group-select', options_for_select(@groups), id: 'group-select', selected: 'None' %>
+  </div>
+  <div class="field">
+    <%= label_tag 'task[name]', 'Task:' %>
+    <%= text_field_tag 'task[name]', nil, placeholder: 'Your task name' %><br/>
+  </div>
+  <div class="field">
+    <%= label_tag 'task[hours]', "HH / " %>
+    <%= number_field_tag 'task[hours]', nil, in: 0.0..24.0, step: 1.0, placeholder: '0-24'%>
+  </div>
+  <div class="field">
+      <%= label_tag 'task[minutes]', "MM  " %>
+      <%= number_field_tag 'task[minutes]', nil, in: 0.0..59.0, step: 1.0, placeholder: '0-59' %>
+  </div>
+<% end %>
+
+<% content_for :action_button do %>
+  <%= button_tag 'Next', type: 'submit', class: 'action-button', id: 'form-submit', form: 'new_task' %>
+<% end %>
+<%= javascript_pack_tag 'form_watcher' %>

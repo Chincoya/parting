@@ -1,0 +1,30 @@
+<% provide(:title, 'tasks') %>
+
+<% content_for :action_button do %>
+  <%= button_tag 'Search', type: 'button', class: 'action-button', id: 'search-task' %>
+<% end %>
+
+<% content_for :search do %>
+  <div class="search-container" id="search-container">
+    <%= button_tag  'Close', type: 'button', class: 'close-search-button action-button', id: 'close-search' %>
+    <%= form_tag tasks_path, method: :get, class: 'search-form', id: 'search-form' do |f| %>
+      <%= text_field_tag :query, nil, placeholder: 'Search for...', class: "search-input", maxlength: '30' %>
+      <%= submit_tag 'Search', class: 'action-button' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :total_time do %>
+  <div class="substatus items-entry">
+    <div class="substatus-details item-details">
+      <div class="substatus-text">TOTAL TASK TIME</div>
+      <div class="substatus-data"><%= to_time_total_format @total %></div>
+    </div>
+  </div>
+<% end %>
+
+<%= render  'shared/dashboard', locals: {itemizable: @tasks } %>
+<%= link_to new_task_path, class: 'new-item-link', id: 'new-item-link' do %>
+  <span>ADD TASK</span>
+<% end %>
+<%= javascript_pack_tag 'tasks-search' %>

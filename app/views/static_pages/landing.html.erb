@@ -1,0 +1,12 @@
+<% provide(:title, 'Welcome') %>
+
+<div class='landing-login-container'>
+  <div class="landing-icon-container">
+    <h2>Parting</h2>
+  </div>
+  <div class="landing-links-container">
+    <%= link_to  'LOG IN', new_user_session_path %>
+    <%= link_to  'SIGN UP', new_user_registration_path %>
+  </div>
+</div>
+<%= javascript_pack_tag 'landing' %>

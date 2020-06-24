@@ -1,0 +1,23 @@
+<% provide(:title, 'LOG IN') %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Your user name' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: '****' %>
+  </div>
+<% end %>
+
+<% content_for :action_button do %>
+  <%= button_tag  'Next', type: 'submit', class: 'action-button', if: 'form-submit', form: 'new_user' %>
+<% end %>
+
+<% content_for :back_button do %>
+  <%= link_to 'Back', '/' , class: 'action-button' %>
+<% end %>
+
+<%= render "users/shared/links" %>
+<%= javascript_pack_tag "landing" %>

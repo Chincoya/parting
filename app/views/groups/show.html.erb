@@ -1,0 +1,9 @@
+<% provide(:title, @group.name) %>
+<% content_for :action_button do %>
+  <%= link_to 'Back', :back , class: 'action-button', id: 'action-button' %>
+<% end %>
+<%= render  'shared/dashboard', locals: {itemizable: @group.tasks } %>
+
+<script>
+  document.getElementById('items-list').style.height = '100%'
+</script>

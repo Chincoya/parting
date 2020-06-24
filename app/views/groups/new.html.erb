@@ -1,0 +1,16 @@
+<% provide(:title, 'NEW GROUP') %>
+
+<%= form_for @group, class: 'form-action' do |f| %>
+  <div class="field">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name, placeholder: 'The name of your group' %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %><br/>
+    <%= f.file_field :icon, accept: 'image/png,image/jpeg' %>
+  </div>
+<% end %>
+
+<% content_for :action_button do %>
+  <%= button_tag 'Next', type: 'submit', class: 'action-button', id: 'form-submit', form: 'new_group' %>
+<% end %>

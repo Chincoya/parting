@@ -1,0 +1,434 @@
+$main-color : #3778c2;
+$secondary-color : #5fb523;
+$main-background-color: #F1F3F2;
+$error-color: #E12B20;
+$text-color-bolder : #434b54;
+$text-color-bold: #555E67;
+$text-color-normal: #878A8F;
+$text-color-light: #989DA3;
+$text-color-lighter: #D7D5D5;
+$menu-gradient: linear-gradient(35deg, rgb(46, 125, 184) 0%, rgb(48, 130, 190) 12.5%, rgb(41, 116, 173) 25%, rgb(23, 64, 110) 75%, rgb(18, 51, 92) 100%);
+$status-gradient: linear-gradient(0deg, rgba(49,134,198,0.9) 0%, rgba(29,54,93,0.4) 100%);
+$main-box-shadow: -2px 2px 5px 0px rgba(26,26,26,1);
+$item-box-shadow: -2px 2px 3px -1px rgba(200,200,200,1);
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: font-url('Montserrat/Montserrat-Bold.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: font-url('Montserrat/Montserrat-Medium.ttf') format('truetype')
+}
+
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: font-url('Montserrat/Montserrat-Light.ttf') format('truetype');
+}
+
+* {
+  /*border: 1px solid red;*/
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  background-color: $main-color;
+  background-image: $menu-gradient;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+}
+
+a {
+  align-items: center;
+  display: flex;
+  font-family: 'Montserrat-Light';
+  font-weight: bold;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.main {
+  background-color: $main-background-color;
+  height: 100%;
+  left: 0;
+  position: relative;
+  transition: top 0.5s, left 0.5s, height 0.5s;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  -webkit-box-shadow: $main-box-shadow;
+  -moz-box-shadow: $main-box-shadow;
+  box-shadow: $main-box-shadow;
+}
+
+.main-phased {
+  height: 70%;
+  top: 15%;
+  left: 80%;
+  overflow: hidden;
+}
+
+.status-bar {
+  padding: 4%;
+  background-image: $status-gradient;
+  align-items: center;
+  background-color: $main-color;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 950;
+  .status {
+    font-family: 'Montserrat-Light';
+    color: white;
+    font-size: 18px;
+  }
+  .menu-popper {
+    position: relative;
+    width: 10%;
+    margin-right: 10%;
+    z-index: 1000;
+    color: white;
+    display: block;
+    .menu-bar1, .menu-bar2, .menu-bar3 {
+      width: 28px;
+      height: 3.5px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .changed-top {
+      width: 20px;
+      transform: rotate(-35deg) translate(-4px, 0.3px);
+    }
+    .changed-bot {
+      width: 20px;
+      transform: rotate(35deg) translate(-4px, -0.3px);
+    }
+  }
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  font-family: 'Montserrat-Light';
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+}
+
+.form-error {
+  -webkit-box-shadow: 0px 0px 3px 3px rgba(194,84,84,1);
+  -moz-box-shadow: 0px 0px 3px 3px rgba(194,84,84,1);
+  box-shadow: 0px 0px 3px 3px rgba(194,84,84,1);
+}
+
+.menu-container {
+  height: 100%;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  z-index: 900;
+}
+
+.menu-poppable {
+  width: 80%;
+  height: 100%;
+}
+
+.menu-user-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 25%;
+  align-items: center;
+  justify-content: space-between;
+  .user-name {
+    font-size: 150%;
+    font-family: 'Montserrat-Light';
+    font-weight: bold;
+    color: $text-color-lighter;
+    margin-bottom: 5%;
+  }
+}
+
+/*
+  HERE lies the media query for desktop 'compatibility'.
+  I leave this comment for reviewers and maintainability
+*/
+
+@media (min-width: 992px) {
+  .main {
+    left: initial;
+    right: 0;
+    width: 70%;
+    position: absolute;
+  }
+  .menu-poppable {
+    width: 30%;
+  }
+  .menu-popper {
+    display: none !important;
+  }
+
+  .status-bar {
+    padding: 25px;
+    height: initial;
+  }
+}
+
+.user-avatar {
+  border: 1px solid $text-color-light;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  height: 50%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: flex-end;
+  color: $text-color-lighter;
+  font-family: 'Montserrat-light';
+  font-weight: bold;
+  height: 20%;
+  .menu-list-icon {
+    color: inherit;
+    height: 35px;
+    border-radius: 5px;
+    width: 35px;
+    margin: 0 10px;
+    padding-bottom: 10px;
+  }
+  a {
+    color: inherit;
+    text-align: left;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba($color: $text-color-lighter, $alpha: 0.5);
+  }
+}
+
+.flash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  z-index: 1100;
+  div {
+    font-family: 'Montserrat-Light';
+    font-size: 120%;
+    color: white;
+    align-items: center;
+    border: solid 1px white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+  }
+}
+
+.flash-success {
+  background-color: $secondary-color;
+}
+
+.flash-error {
+  background-color: $error-color;
+}
+
+.group-avatar {
+  border-radius: 5px;
+  height: 70px;
+  width: 70px;
+}
+
+
+.items-container {
+  height: 90%;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 170px);
+  justify-content: start;
+  list-style: none;
+  overflow-y: scroll;
+}
+
+.items-list-phased {
+  overflow: hidden;
+  height: calc(100% - 70px);
+}
+
+.items-entry {
+  align-items: center;
+  background-color: white;
+  color: $text-color-normal;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat-Light';
+  height: 100px;
+  margin: 10px 2.5%;
+  padding: 8px;
+  position: relative;
+  width: 95%;
+
+  -webkit-box-shadow: $item-box-shadow;
+  -moz-box-shadow: $item-box-shadow;
+  box-shadow: $item-box-shadow;
+
+}
+
+.item-details {
+  display: flex;
+  height: 100%;
+  width: 75%;
+  color: $text-color-light;
+}
+
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  .item-details {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 668px) and (orientation: landscape) {
+  .item-details {
+    width: 85%;
+  }
+}
+
+.item-text {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  height: 100%;
+}
+
+.item-name {
+  border-bottom: 1px solid $text-color-lighter;
+  font-family: 'Montserrat-Medium';
+  font-weight: bold;
+  height: 70%;
+  padding-top: 4%;
+  padding-right: 2%;
+  width: 100%;
+}
+.item-date {
+  width: 100%;
+  height: 25%;
+}
+
+.item-app {
+  border-bottom: 1px solid $text-color-lighter;
+  font-family: 'Montserrat-Bold';
+  font-size: 100%;
+  height: 70%;
+  padding-top: 4%;
+  width: 30%;
+}
+
+.new-item-link {
+  background-color: $secondary-color;
+  bottom: 0;
+  color: white;
+  height: 100px;
+  padding: 10px;
+  position: absolute;
+  transition: bottom 0.5s, left 0.5s, height 0.5s;
+  width: 100%;
+  span {
+    align-items: center;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.nitem-link-phased {
+  height: 70px;
+}
+
+
+.item-link-cover {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.empty-list {
+  color: $text-color-lighter;
+  width: 100%;
+  height: 20%;
+  margin: 10% 0;
+  text-align: center;
+  font-family: 'Montserrat-Medium';
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.substatus {
+  margin: 0;
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid $text-color-lighter;
+}
+
+.substatus-details {
+  width: 100%;
+  font-weight: bolder;
+  [class^=substatus] {
+    display: flex;
+    align-items: center;
+    width: 50%;
+  }
+  .substatus-text {
+    padding-left: 2.5%;
+  }
+  .substatus-data {
+    justify-content: center;
+    font-family: 'Montserrat-Bold';
+  }
+}

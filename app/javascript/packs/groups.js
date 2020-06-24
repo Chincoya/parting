@@ -1,0 +1,1 @@
+$('#items-list').css('height', 'calc(100% - 100px)')

@@ -1,0 +1,13 @@
+<div class="items-container">
+  <%= yield :total_time %>
+  <% if locals[:itemizable].length != 0 %>
+    <ul class="items-list" id="items-list">
+      <%= render partial: 'shared/items', collection: locals[:itemizable],
+        as: :itemizables, locals: { linkable: locals[:linkable] } %>
+    </ul>
+  <% else %>
+    <div class="empty-list">
+      There's nothing here :c
+    </div>
+  <% end %>
+</div>
